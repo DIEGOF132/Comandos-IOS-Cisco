@@ -20,7 +20,7 @@ Criptografar as senhas em texto plano
 	(config)#service password-encryption
 
 Criar um banner
-	(config)#banner motd "[SUA MENSAGEM]"
+	 (config)#banner motd "[SUA MENSAGEM]"
 
 Configurar IP na interface VLAN1
 	(config)#interface vlan 1
