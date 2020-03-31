@@ -1,0 +1,98 @@
+Trocar nome do switch
+	>enable
+	#configure terminal
+	(config)#hostname [NOME_DO_EQUIPAMENTO]
+	
+Salvar as configurações da running-config para o startup-config
+	#copy running-config startup-config
+
+Definir senha de Enable
+	(config)#enable password [SENHA] [SEM CRIPTOGRAFIA!!!]
+	(config)#enable secret [SENHA] [CRIPTOGRAFADA!]
+
+Habilitar senha na Console
+	#configure terminal
+	(config)#line console 0
+	(config-line)#password [SENHA]
+	(config-line)#login
+	
+Criptografar as senhas em texto plano
+	(config)#service password-encryption
+
+Criar um banner
+	(config)#banner motd "[SUA MENSAGEM]"
+
+Configurar IP na interface VLAN1
+	(config)#interface vlan 1
+	(config-if)#ip address [IP] [MÁSCARA]
+	(config-if)#no shutdown
+	
+Configurar IP em uma interface 
+	(config)#interface [gigabitethernet ou fastethernet]
+	(config-if)#ip address [IP] [MÁSCARA]
+	(config-if)#no shutdown
+	
+Ver resumo das interface
+	#show ip interface brief
+
+Ativar acesso via VTY
+	(config)#line vty 0 15
+	(config-line)#password [SENHA]
+	
+Colocar descrição na interface
+	(config)#interface [fastethernet ou gigabitethernet ou vlan]
+	(config-if)#description [DESCRIÇÃO_DA_INTERFACE]
+	
+Desativar o MDIX automático
+	(config)#interface [ethernet,fastethernet,gigabitethernet]
+	(config-if)#no mdix auto
+	
+Ativar o MDIX automático
+	(config)#interface [ethernet,fastethernet,gigabitethernet]
+	(config-if)#mdix auto
+
+Configurar o serviço de SSH
+	(config)#ip domain-name [NOME_DO_DOMÍNIO]
+	(config)#crypto key generate rsa general-key modulus 1024
+	(config)#line vty 0 15
+	(config-line)#transport input ssh
+	(config-line)#password [SENHA]
+	(config-line)#login
+
+Apagar as configurações do equipamentos
+	#write erase
+	
+Reiniciar o equipamento
+	#reload
+
+Exibir tabela de roteamento
+	#show ip route
+
+Criar um usuário local
+	(config)#username [NOME_DO_USUÁRIO] privilege [0-15] secret [SENHA]
+
+Habilitar usuário para acesso na VTY ou na Console
+	(config-line)#login local
+
+Utilizar comandos do modo EXEC-PRIVILEGIADO em qualquer tela
+	(config/config-line/config-if)#do [COMANDO_DO_MODO_EXEC_PRIVILEGIADO]
+		
+		Exemplo: (config-if)#do wr
+
+Desativa tradução de nome
+	(config)#no ip domain-lookup
+
+Definir tamanho mínimo da senha dos usuários
+	(config)#security password min-length [NÚMERO_DE_CARACTERES_MÍNIMO]
+
+Definir bloqueio de usuário, caso ele erre a senha
+	(config)#login block-for [TEMPO_EM_SEGUNDOS] attempts [NÚMERO_DE_TENTATIVAS] within [TEMPO_EM_SEGUNDOS]
+	
+Criar rota estática
+	(config)#ip route [IP_DA_REDE_DE_DESTINO] [MÁSCARA_DA_REDE_DE_DESTINO] [IP_DO_ROTEADOR_QUE_CONHECE_ESSA_REDE]
+
+Criar rota padrão
+	(config)#ip route 0.0.0.0 0.0.0.0 [IP_DO_ROTEADOR_DA_SUA_ROTA_PADRÃO]
+
+Adicionar IPv6 a uma interface
+	(config-if)#ipv6 address [IP]/[MÁSCARA]
